@@ -22,7 +22,7 @@ public class Application {
 //        bClass.printStars();
 
         /* 필기. 중첩 반복문을 활용한 마름모 찍기 예제 */
-//        bClass.printDiamond();
+        bClass.printDiamond();
 
         C_while cClass = new C_while();
 
