@@ -1,5 +1,6 @@
 package com.ohgiraffers.toy.domain;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameThreeSixNine {
@@ -49,7 +50,7 @@ public class GameThreeSixNine {
                 break;
             }
             number++;
-            System.out.println("computer : " + number);
+            printComputer(number);
             number++;
         }
     }
@@ -57,9 +58,39 @@ public class GameThreeSixNine {
     private boolean getUserInput(int number) {
         System.out.print("입력 : ");
         String input = sc.nextLine();
-        if (Integer.parseInt(input) == number) {
+        String answer = getAnswer(number);
+        if (input.equals(answer)) {
+
             return true;
         }
         return false;
+    }
+
+    private String getAnswer(int num) {
+        String answer = String.valueOf(num);
+        long targetNum = countClap(answer);
+        if (targetNum == 0) {
+            return answer;
+        }
+        answer = "";
+        for (int i = 0; i < targetNum; i++) {
+            answer += "짝";
+        }
+
+        return answer;
+    }
+
+    private long countClap(String str) {
+        ArrayList targetNumber = new ArrayList<Character>();
+        targetNumber.add('3');
+        targetNumber.add('6');
+        targetNumber.add('9');
+        return str.chars()
+                .filter(c -> targetNumber.contains(c))
+                .count();
+    }
+
+    private void printComputer(int input) {
+        System.out.println("computer : " + getAnswer(input));
     }
 }
