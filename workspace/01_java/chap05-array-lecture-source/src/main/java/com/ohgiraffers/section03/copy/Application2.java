@@ -1,4 +1,4 @@
-package com.ohgiraffers.section3.copy;
+package com.ohgiraffers.section03.copy;
 
 import java.util.Arrays;
 
