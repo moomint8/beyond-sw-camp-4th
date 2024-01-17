@@ -34,6 +34,10 @@ public class Game {
         while (true) {
             String input = getPlayerNumber();
 
+            if (input.equals("999")) {
+                break;
+            }
+
             if (!isAnswer(input)) {      // 오답인지 검증
                 System.out.println("틀렸습니다! 당신은 패배했습니다!");
                 break;
@@ -51,7 +55,7 @@ public class Game {
             updateAnswer();
         }
 
-        System.out.println("369게임을 종료합니다...");
+        System.out.println("\n369게임을 종료합니다...");
     }
 
     private void selectFirstOrSecond() {
@@ -175,7 +179,7 @@ public class Game {
             System.out.print("입력 : ");
             try {
                 input = sc.nextLine();
-                validateIsNumber(input);
+                validateIsNumberOrClap(input);
 
                 return input;
             } catch (InputMismatchException e) {
@@ -184,7 +188,7 @@ public class Game {
         }
     }
 
-    private void validateIsNumber(String input) {
+    private void validateIsNumberOrClap(String input) {
         try {
             if (!input.contains("짝")) {
                 Integer.parseInt(input);
