@@ -6,7 +6,7 @@ public class GameManager {
 
         Game game = new Game();
 
-        game.selectFirstOrSecond();     // 선공, 후공 설정
+//        game.selectFirstOrSecond();     // 선공, 후공 설정
         game.start();
 
     }
