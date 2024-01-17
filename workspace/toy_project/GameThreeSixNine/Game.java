@@ -59,7 +59,24 @@ public class Game {
 
         while (true) {
             int input = getPlayerNumber();
+
+            if (!isAnswer(input)) {      // 오답인지 검증
+                System.out.println("틀렸습니다! 당신은 패배했습니다!");
+                break;
+            }
+            number++;
+            System.out.println("computer : " + number);
+            number++;
         }
+
+        System.out.println("369게임을 종료합니다...");
+    }
+
+    private boolean isAnswer(int input) {
+        if (input == number) {
+            return true;
+        }
+        return false;
     }
 
     private int getPlayerNumber() {
