@@ -4,7 +4,11 @@ public class GameManager {
     public static void play() {
         printTitle();
 
-        boolean sequence = Game.selectFirstOrSecond();
+        Game game = new Game();
+
+        game.selectFirstOrSecond();     // 선공, 후공 설정
+        game.start();
+
     }
 
     private static void printTitle() {
