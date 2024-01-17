@@ -4,8 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
-    private boolean sequence;   // 선공 여부
-    private int number = 1;     // 현재 진행되어야 할 숫자
+    private boolean sequence;    // 선공 여부
+    private int number = 3369;      // 현재 진행되어야 할 숫자
+    private String answer;       // 정답
+
+    {
+        updateAnswer();
+    }
 
     public boolean selectFirstOrSecond() {
         Scanner sc = new Scanner(System.in);
@@ -53,50 +58,78 @@ public class Game {
     public void start() {
         System.out.println("369게임을 시작합니다!");
         if (!sequence) {
-            System.out.println("computer : " + number);
+            System.out.println("computer : " + answer);
             number++;
         }
+        updateAnswer();
 
         while (true) {
-            int input = getPlayerNumber();
+            String input = getPlayerNumber();
 
             if (!isAnswer(input)) {      // 오답인지 검증
                 System.out.println("틀렸습니다! 당신은 패배했습니다!");
                 break;
             }
             number++;
-            System.out.println("computer : " + number);
+            updateAnswer();
+            System.out.println("computer : " + answer);
             number++;
+            updateAnswer();
         }
 
         System.out.println("369게임을 종료합니다...");
     }
 
-    private boolean isAnswer(int input) {
-        if (input == number) {
+    private void updateAnswer() {
+        String number = Integer.toString(this.number);
+        if (number.contains("3") || number.contains("6") || number.contains("9")) {
+            numberClap(number);
+            return;
+        }
+        answer = number;
+    }
+
+    private void numberClap(String number) {
+        answer = "";            // answer 초기화
+        for (int i = 0; i < number.length(); i++) {
+            if (number.charAt(i) == '3' || number.charAt(i) == '6' || number.charAt(i) == '9') {
+                answer += "짝";
+            }
+        }
+    }
+
+    private boolean isAnswer(String input) {
+        if (input.equals(answer)) {
             return true;
         }
         return false;
     }
 
-    private int getPlayerNumber() {
+    private String getPlayerNumber() {
         Scanner sc = new Scanner(System.in);
+
+        String input;
 
         while (true) {
             System.out.print("입력 : ");
             try {
-                return validateIsNumber(sc.nextLine());
+                input = sc.nextLine();
+                validateIsNumber(input);
+
+                return input;
             } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private int validateIsNumber(String input) {
+    private void validateIsNumber(String input) {
         try {
-            return Integer.parseInt(input);
+            if (!input.contains("짝")) {
+                Integer.parseInt(input);
+            }
         } catch (Exception e) {
-            throw new InputMismatchException("숫자만 입력 가능합니다. 다시 입력하세요.");
+            throw new InputMismatchException("숫자 또는 박수만 입력 가능합니다. 다시 입력하세요.");
         }
     }
 }
