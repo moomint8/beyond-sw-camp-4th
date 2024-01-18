@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Game {
     private boolean sequence;    // 선공 여부
     private int number = 1;      // 현재 진행되어야 할 숫자
-    private String answer;       // 정답
+    private StringBuilder answer;       // 정답
     private int level;
 
     // 난이도별 컴퓨터가 틀릴 확률
@@ -151,20 +151,20 @@ public class Game {
             numberClap(number);
             return;
         }
-        answer = number;
+        answer = new StringBuilder(number);
     }
 
     private void numberClap(String number) {
-        answer = "";            // answer 초기화
+        answer = new StringBuilder("");            // answer 초기화
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) == '3' || number.charAt(i) == '6' || number.charAt(i) == '9') {
-                answer += "짝";
+                answer.append("짝");
             }
         }
     }
 
     private boolean isAnswer(String input) {
-        if (input.equals(answer)) {
+        if (input.equals(new String(answer))) {
             return true;
         }
         return false;
