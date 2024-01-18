@@ -61,9 +61,7 @@ public class Game {
     // 선공, 후공 정하는 메소드
     private void selectFirstOrSecond() {
         Scanner sc = new Scanner(System.in);
-
         String input;
-
         System.out.println("선공/후공 을 선택해주세요!");
 
         // 선 or 후 제대로 된 입력 받을 때까지 반복
@@ -71,17 +69,14 @@ public class Game {
             try {
                 System.out.print("입력(선/후) : ");
                 input = sc.nextLine();
-                validateLength(input);
-                validateValue(input);
 
-                if (input.charAt(0) == '선') {
+                if (validateSequenceInput(input)) {     // 입력이 선 인 경우
                     sequence = true;
                     break;
                 }
-                sequence = false;
-
+                sequence = false;   // 입력이 후 인 경우
                 break;
-            } catch (Exception e) {
+            } catch (Exception e) {     // 입력이 선 or 후 가 아닌 경우 예외처리
                 System.out.println(e.getMessage());
                 System.out.println("다시 입력하세요.");
             }
@@ -89,18 +84,15 @@ public class Game {
         System.out.println("당신은 " + input + "공입니다!");
     }
 
-    // 선공, 후공 입력값 검증하는 메소드(선, 후 가 아닌 경우 예외처리)
-    private void validateValue(String input) throws Exception {
-        if (input.charAt(0) != '선' && input.charAt(0) != '후') {
-            throw new Exception("잘못된 입력입니다. 선 또는 후 만 입력해주세요.");
+    // 사용자 선공, 후공 입력값 검증
+    private boolean validateSequenceInput(String input) throws Exception {
+        if (input.equals("선")) {
+            return true;
         }
-    }
-
-    // 선공, 후공 입력값 길이 검증하는 메소드(선장, 선수필승, 등의 경우 예외처리)
-    private void validateLength(String input) throws Exception {
-        if (input.length() != 1) {
-            throw new Exception("잘못된 입력입니다.");
+        if (input.equals("후")) {
+            return false;
         }
+        throw new Exception("잘못된 입력입니다. 선 또는 후 만 입력해주세요.");
     }
 
     // 난이도 선택 메소드
