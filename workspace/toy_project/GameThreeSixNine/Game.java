@@ -7,7 +7,8 @@ import java.util.Scanner;
 public class Game {
     private boolean sequence;           // 선공 여부(true : 선공, false : 후공)
     private int number = 1;             // 현재 진행되어야 할 숫자
-    private StringBuilder answer;       // 정답(369 포함 경우 갯수만큼 짝, 아닌 경우 숫자 형변환해서 저장)
+    private StringBuilder answer
+                    = new StringBuilder(number);   // 정답(369 포함 경우 갯수만큼 짝, 아닌 경우 숫자 형변환해서 저장)
     private int level;                  // 난이도
 
     // 난이도별 컴퓨터가 틀릴 확률(%)
@@ -21,12 +22,11 @@ public class Game {
         chooseLevel();              // 난이도 선택
         selectFirstOrSecond();      // 선공/후공 선택
 
-        updateAnswer();             // answer를 number 변화에 맞춰 업데이트
         // 후공인 경우 computer 가 시작하는 정답 출력
         if (!sequence) {
             System.out.println("computer : " + answer);
-            number++;
-            updateAnswer();         // answer를 number 변화에 맞춰 업데이트
+
+            updateNumberAndAnswer();         // number, answer 업데이트
         }
 
         // 게임에 대한 while문
@@ -48,11 +48,9 @@ public class Game {
                 break;
             }
 
-            number++;
-            updateAnswer();             // answer를 number 변화에 맞춰 업데이트
+            updateNumberAndAnswer();             // number, answer 업데이트
             System.out.println("computer : " + answer);
-            number++;
-            updateAnswer();             // answer를 number 변화에 맞춰 업데이트
+            updateNumberAndAnswer();             // number, answer 업데이트
         }
 
         System.out.println("\n369게임을 종료합니다...");
@@ -147,7 +145,8 @@ public class Game {
     }
 
     // 현재 진행 숫자에 따른 정답 저장 메소드
-    private void updateAnswer() {
+    private void updateNumberAndAnswer() {
+        this.number++;   // 다음 차례 숫자로 변경
         String number = Integer.toString(this.number);
         if (number.contains("3") || number.contains("6") || number.contains("9")) {
             numberClap(number);                 // 3,6,9가 포함된 경우 갯수에 맞게 짝 을 치는 메소드 호출
