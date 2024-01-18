@@ -107,24 +107,27 @@ public class Game {
     private void chooseLevel() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("난이도를 선택해주세요!(1.초보 2.중수 3.고수)");
-        System.out.print("입력 : ");
-        switch (sc.nextLine()) {
-            case "1":
+        while (true) {
+            System.out.println("난이도를 선택해주세요!(1.초보 2.중수 3.고수)");
+            System.out.print("난이도 입력 : ");
+            String input = sc.nextLine();
+            if (input.equals("1")) {
                 level = 1;
                 System.out.println("초보 난이도로 진행합니다.");
                 break;
-            case "2":
-                System.out.println("중수 난이도로 진행합니다.");
+            }
+            if (input.equals("2")) {
                 level = 2;
+                System.out.println("중수 난이도로 진행합니다.");
                 break;
-            case "3":
-                System.out.println("고수 난이도로 진행합니다.");
+            }
+            if (input.equals("3")) {
                 level = 3;
+                System.out.println("고수 난이도로 진행합니다.");
                 break;
-            default:
-                System.out.println("잘못된 입력입니다. 다시 입력하세요.");
-                System.out.println("입력 : ");
+            }
+
+            System.out.println("잘못된 입력입니다. 다시 입력하세요.");
         }
     }
 
