@@ -2,13 +2,10 @@ package com.ohgiraffers.toy;
 
 public class GameManager {
     public static void play() {
-        printTitle();
+        printTitle();       // 타이틀 출력
 
         Game game = new Game();
-
-//        game.selectFirstOrSecond();     // 선공, 후공 설정
         game.start();
-
     }
 
     private static void printTitle() {
