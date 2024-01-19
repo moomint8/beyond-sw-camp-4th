@@ -1,6 +1,6 @@
-package com.ohgiraffers.section01.run;
+package com.ohgiraffers.section01.object.run;
 
-import com.ohgiraffers.section01.dto.BookDTO;
+import com.ohgiraffers.section01.object.dto.BookDTO;
 
 public class Application1 {
     public static void main(String[] args) {
