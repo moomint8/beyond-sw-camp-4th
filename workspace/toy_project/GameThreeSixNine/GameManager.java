@@ -1,7 +1,7 @@
 package com.ohgiraffers.toy;
 
 public class GameManager {
-    public static void play() {
+    public static void play() throws InterruptedException {
         printTitle();       // 타이틀 출력
 
         Game game = new Game();

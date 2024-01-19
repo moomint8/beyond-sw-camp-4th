@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class Game {
     private boolean sequence;           // 선공 여부(true : 선공, false : 후공)
     private int number = 1;             // 현재 진행되어야 할 숫자
-    private StringBuilder answer
-                    = new StringBuilder(number);   // 정답(369 포함 경우 갯수만큼 짝, 아닌 경우 숫자 형변환해서 저장)
+    private StringBuilder answer = new StringBuilder(Integer.toString(number));   // 정답(369 포함 경우 갯수만큼 짝, 아닌 경우 숫자 형변환해서 저장)
     private int level;                  // 난이도
 
     // 난이도별 컴퓨터가 틀릴 확률(%)
@@ -17,7 +16,7 @@ public class Game {
     private final int hardProbability = 10;
 
 
-    public void start() {
+    public void start() throws InterruptedException {
         System.out.println("369게임을 시작합니다!");
         chooseLevel();              // 난이도 선택
         selectFirstOrSecond();      // 선공/후공 선택
@@ -42,18 +41,44 @@ public class Game {
                 System.out.println("틀렸습니다! 당신은 패배했습니다!");
                 break;
             }
-            if (computerIsWrong()) {    // computer가 틀리는 경우
-                System.out.println("computer가 틀렸습니다!");
-                System.out.println("당신은 승리했습니다! 축하합니다!");
+
+            updateNumberAndAnswer();             // number, answer 업데이트
+
+            if (!printComputerOutput()) {       // computer 답변, 일정 확률로 computer가 패배
+                System.out.println("computer가 패배했습니다");
+                System.out.println("승리를 축하합니다!");
                 break;
             }
 
             updateNumberAndAnswer();             // number, answer 업데이트
-            System.out.println("computer : " + answer);
-            updateNumberAndAnswer();             // number, answer 업데이트
         }
 
         System.out.println("\n369게임을 종료합니다...");
+    }
+
+    // computer의 답변 Print 해주는 메소드
+    private boolean printComputerOutput() throws InterruptedException {
+        if (computerIsWrong()) {
+            System.out.println("computer : " + makeWrongComputerOutput());
+            return false;
+        }
+        System.out.println("computer : " + answer);
+        return true;
+    }
+
+    // computer가 잘못된 답변을 말할 때 그 답변을 정해주는 메소드
+    private String makeWrongComputerOutput() throws InterruptedException {
+        if (answer.toString().contains("짝")) {
+            return Integer.toString(number);
+        }
+        Random random = new Random();
+        int test = random.nextInt(2);
+        if (test == 0) {        // 50% 확률로 컴퓨터가 시간오버 or 잘못된 답변
+            System.out.println("computer : ......");
+            Thread.sleep(2000);
+            return answer.toString() + "!\ncomputer가 너무 늦게 답변했습니다.";
+        }
+        return "어..어..짜..악?";
     }
 
     // 선공, 후공 정하는 메소드
