@@ -1,4 +1,4 @@
-package com.ohgiraffers.section04.stringbuilder;
+package com.ohgiraffers.section03.stringbuilder;
 
 public class Application2 {
     public static void main(String[] args) {
