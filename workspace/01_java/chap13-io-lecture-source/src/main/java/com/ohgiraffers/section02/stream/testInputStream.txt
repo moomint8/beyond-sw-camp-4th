@@ -1,0 +1,3 @@
+Hello World! You must use only Eng!
+Because almost char that not Eng, is bigger than 1byte, but FileInputStream is only can read 1 char 1 byte.
+For instance, look this case : 이것은 한글입니다.
