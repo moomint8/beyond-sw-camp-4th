@@ -31,7 +31,7 @@ public class Application2 {
         doubleStream.forEach(value -> System.out.print(value + " "));
         System.out.println("\n====================================");
 
-        /* 설명. 문자열을 spit하여 stream으로 생성 */
+        /* 설명. 문자열을 split하여 stream으로 생성 */
         Stream<String> splitStream = Pattern.compile(", ").splitAsStream("html, css, javascript");
         splitStream.forEach(System.out::println);
     }
