@@ -1,4 +1,4 @@
-package com.ogiraffers.chap01.section01.sorting;
+package com.ogiraffers.chap02.section01.sorting;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

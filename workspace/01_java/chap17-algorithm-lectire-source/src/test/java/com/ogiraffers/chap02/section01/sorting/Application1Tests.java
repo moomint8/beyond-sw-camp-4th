@@ -1,4 +1,4 @@
-package com.ogiraffers.chap01.section01.sorting;
+package com.ogiraffers.chap02.section01.sorting;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class Application2Tests {
+public class Application1Tests {
 
     private static int input1, input2;
     private static int[] act1, act2;
@@ -39,12 +39,12 @@ public class Application2Tests {
     }
 
 
-    @DisplayName("선택 정렬 테스트")
+    @DisplayName("버블 정렬 테스트")
     @Timeout(value = 1000, unit = TimeUnit.MILLISECONDS)
     @ParameterizedTest
     @MethodSource("provideAscendingSource")
     public void bubbleSortTests(int length, int[] actual, int[] expected) {
-        Application2.solution(length, actual);
+        Application1.solution(length, actual);
         Assertions.assertArrayEquals(expected, actual);
     }
 }

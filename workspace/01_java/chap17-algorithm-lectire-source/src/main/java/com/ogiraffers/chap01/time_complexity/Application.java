@@ -1,4 +1,4 @@
-package com.ogiraffers.chap01.section01.time_complexity;
+package com.ogiraffers.chap01.time_complexity;
 
 import java.util.Arrays;
 

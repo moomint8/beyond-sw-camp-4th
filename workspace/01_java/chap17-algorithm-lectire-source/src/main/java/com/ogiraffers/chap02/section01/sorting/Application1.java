@@ -1,6 +1,5 @@
-package com.ogiraffers.chap01.section01.sorting;
+package com.ogiraffers.chap02.section01.sorting;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Application1 {

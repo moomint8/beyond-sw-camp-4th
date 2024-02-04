@@ -1,4 +1,4 @@
-package com.ogiraffers.chap01.section01.sorting;
+package com.ogiraffers.chap02.section01.sorting;
 
 /* 수업목표. 선택 정렬을 이해할 수 있다. */
 /* 필기.
@@ -8,7 +8,6 @@ package com.ogiraffers.chap01.section01.sorting;
  *   시간 복잡도는 O(n^2)이라 효율적이지 않다.
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Application2 {
