@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>@ModelAttribute를 이용하여 파라미터 전달 받기</h1>
+<form action="search" method="post">
+    검색할 메뉴의 이름: <input type="text" name="name"><br>
+    검색할 메뉴의 가격: <input type="text" name="price"><br>
+    검색할 메뉴의 카테고리
+    <select name="categoryCode">
+        <option value="1">식사</option>
+        <option value="2">음료</option>
+        <option value="3">디져트</option>
+    </select><br>
+    검색할 판매 상태: <input type="text" name="orderableStatus">
+    <input type="submit" value="검색하기">
+</form>
+
+</body>
+</html>
