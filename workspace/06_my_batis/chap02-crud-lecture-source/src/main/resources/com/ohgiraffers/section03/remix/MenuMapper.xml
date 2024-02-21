@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.section03.remix.MenuMapper">
+
+    <resultMap id="menuResultMap" type="com.ohgiraffers.section03.remix.MenuDTO">
+        <id property="menuCode" column="menu_code"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuPrice" column="menu_price"/>
+        <result property="categoryCode" column="category_code"/>
+        <result property="orderableStatus" column="orderable_status"/>
+    </resultMap>
+
+    <select id="selectAllMenus" resultMap="menuResultMap">
+        select
+        menu_code
+        , menu_name
+        , menu_price
+        , category_code
+        , orderable_status
+        from tbl_menu
+    </select>
+
+    <select id="selectMenu" resultMap="menuResultMap" parameterType="_int">
+        select
+        menu_code
+        , menu_name
+        , menu_price
+        , category_code
+        , orderable_status
+        from tbl_menu
+        where menu_code = #{menuCode}
+    </select>
+
+    <!-- 설명. DML용 태그는 반환형의 개념이 필요없다.(resultMap 또는 resultType 속성을 태그에 사용하지 않는다.)
+         설명. parameterType으로 던져지는 타입이 기본적으로 존재하는 자료형이 아닌 경우 풀 클래스명을 사용한다.
+              (설정용 xml에 typeAlias 설정을 하면 줄여서 쓸 수는 있다.)
+     -->
+    <insert id="insertMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
+        insert
+          into tbl_menu (
+               menu_name
+             , menu_price
+             , category_code
+             , orderable_status
+             )
+             values (
+                #{menuName}
+              , #{menuPrice}
+              , #{categoryCode}
+              , 'Y');
+    </insert>
+
+    <update id="updateMenu" parameterType="com.ohgiraffers.section03.remix.MenuDTO">
+        update
+               tbl_menu
+           set menu_name = #{menuName}
+             , menu_price = #{menuPrice}
+         where menu_code = #{menuCode}
+    </update>
+
+    <delete id="deleteMenu" parameterType="_int">
+        delete
+          from tbl_menu
+         where menu_code = #{menuCode}
+    </delete>
+</mapper>
