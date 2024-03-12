@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,13 +14,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurity {
 
-    private UserService userService;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    UserService userService;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     Environment env;
 
     @Autowired
@@ -46,13 +44,12 @@ public class WebSecurity {
 
         /* 설명. JWT 로그인 처리를 할 것이므로 csrf는 신경쓸 필요가 없다. */
         http.csrf((csrf) -> csrf.disable());
+
         http.authorizeHttpRequests((auth) -> auth
-                .requestMatchers(
-                        new AntPathRequestMatcher("/users/**", HttpMethod.POST.name())).permitAll()
-                .requestMatchers(
-                        new AntPathRequestMatcher("/health_check/**", HttpMethod.GET.name())).permitAll()
-                // 모든 요청에 대해 인증을 요구합니다.
-                .anyRequest().authenticated())
+                .requestMatchers(new AntPathRequestMatcher("/health_check")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/users/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll()
+        )
                 .authenticationManager(authenticationManager);
 
         http.addFilter(getAuthenticationFilter(authenticationManager));
@@ -60,9 +57,9 @@ public class WebSecurity {
         return http.build();
     }
 
+    /* 설명. 인증(Authentication)용 메소드 */
     private Filter getAuthenticationFilter(AuthenticationManager authenticationManager) {
         return new AuthenticationFilter(authenticationManager, userService, env);
     }
 
-    /* 설명. 인증(Authentication)용 메소드 */
 }

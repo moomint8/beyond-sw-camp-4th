@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /*
  * 필기. JWT(Json Web Token)의 구조
  *
@@ -43,15 +44,16 @@ import java.util.Date;
  *             iat: 토큰 활성화(발급) 시간(issued at))
  * 필기.
  *       b. 공개 클레임(public claim)
- *          : 사용자 정의 클레임으로 공개용 정보를 위해 사용(충돌 방지를 위해 URI로 구성)
+ *       	: 사용자 정의 클레임으로 공개용 정보를 위해 사용(충돌 방지를 위해 URI로 구성)
  * 필기.
  *       c. 비공개 클레임(private claim)
- *         : 사용자 정의 클레임으로 서버(JWT 발급자)와 클라이언트 사이에 임의로 지정한 정보를 저장
+ *      	: 사용자 정의 클레임으로 서버(JWT 발급자)와 클라이언트 사이에 임의로 지정한 정보를 저장
  *            (충돌 발생 우려가 있어 조심해서 사용할 것)
  * 필기.
  *  3. 서명(Verify Signature)
  *    - Header 인코딩 값과 Payload 인코딩 값을 합쳐서 비밀 키로 해쉬(헤더의 해싱 알고리즘으로)하여 생성
  */
+
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private UserService userService;
@@ -90,13 +92,13 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         System.out.println("authResult = " + authResult);
-        String userEmail = ((User) authResult.getPrincipal()).getUsername();
+        String email = ((User) authResult.getPrincipal()).getUsername();
 
         System.out.println("시크릿 키: " + environment.getProperty("token.secret"));
-        System.out.println("userName = " + userEmail);
+        System.out.println("userName = " + email);
 
         /* 설명. DB를 다녀와 사용자의 고유 아이디(userId)를 가져올 예정(Principal 객체(Authentication)에는 없는 값이므로) */
-        UserDTO userDetails = userService.getUserDetailsByEmail(userEmail);
+        UserDTO userDetails = userService.getUserDetailsByEmail(email);
         String userId = userDetails.getUserId();
 
         String token = Jwts.builder()
@@ -108,5 +110,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         response.addHeader("token", token);
         response.addHeader("userId", userId);
+
     }
 }
