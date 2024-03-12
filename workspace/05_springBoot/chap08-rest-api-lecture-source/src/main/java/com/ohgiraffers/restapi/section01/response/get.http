@@ -1,0 +1,23 @@
+### GET request hello
+GET localhost:8080/response/hello
+
+### GET request random
+GET localhost:8080/response/random
+
+### GET request Message
+GET localhost:8080/response/message
+
+### GET request complex message
+GET localhost:8080/response/test
+
+### GET request result list
+GET localhost:8080/response/list
+
+### GET request result map
+GET localhost:8080/response/map
+
+### GET request Image
+GET localhost:8080/response/image
+
+### GET request
+GET localhost:8080/response/entity
