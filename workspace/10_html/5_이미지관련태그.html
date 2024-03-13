@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        이미지를 삽입하기 위해 <img> 태그를 사용한다.
+        이미지 파일의 경로를 src라는 속성의 속성값으로 지정해주어야 하며,
+        <img>태그는 닫기 태그를 사용하지 않는다.
+    -->
+    <img src="sample/image/river1.PNG" alt="강가사진">
+    <p>src 속성에 경로를 설정하여 이미지 파일을 불러온다.</p>
+    <hr>
+    <h2>자주 사용하는 속성들</h2>
+    <h3>alt 속성</h3>
+    <p>
+        화면낭독기는 이미지를 읽을 수 없기 때문에 대체되는 텍스트를 대신 읽어준다.<br>
+        혹은 사진의 경로가 잘못되거나 이미지를 제대로 표현할 수 없는 경우 대체 텍스트의 용도로도 사용 가능하다.
+    </p>
+    
+    <br>
+    <h3>width와 height 속성</h3>
+    <p>
+        사진의 높이와 너비를 지정할 수 있다.<br>
+        고정된 단위의 크기로도 지정 가능하며 <br>
+        가변 크기 단위의 크기로도 지정 가능하다.
+
+        <h4>고정 크기 단위: 화면 사이즈가 달라져도 크기가 변하지 않는다.</h4>
+        <img src="sample/image/flower1.PNG" width="200px" height="150px">
+        <img src="sample/image/flower2.PNG" width="200px" height="150px">
+        <img src="sample/image/flower3.PNG" width="200px" height="150px">
+        <img src="sample/image/flower4.PNG" width="200px" height="150px">
+        <img src="sample/image/flower5.PNG" width="200px" height="150px">
+
+        <h4>가변 크기 단위: 화면 사이즈가 달라지면 그 사이즈에 따라 크기가 변경된다..</h4>
+        <img src="sample/image/flower1.PNG" width="15%" height="150px">
+        <img src="sample/image/flower2.PNG" width="15%" height="150px">
+        <img src="sample/image/flower3.PNG" width="15%" height="150px">
+        <img src="sample/image/flower4.PNG" width="15%" height="150px">
+        <img src="sample/image/flower5.PNG" width="15%" height="150px">
+    </p>
+
+    <hr>
+    <h4>이미지 구역을 두 개로 나누어 각각의 링크 설정</h4>
+    <img src="sample/image/city1.PNG" width="600px" height="500px" usemap="#map">
+    <map name="map">
+        <area shape="rect" coords="0,0,300,500" href="http:/www.naver.com" alt="_self">
+        <area shape="rect" coords="300,0,600,500" href="https:/www.google.com" alt="_self">
+    </map>
+
+    <!-- image 태그의 설명은 figure 태그와 figcation태그를 활용하게 된다. -->>
+    <figure>
+        <img src="sample/image/tower1.PNG" width="600px" height="300px">
+        <figcaption>
+            <p>타워</p><br>
+            <p>멋진 타워 사진이다.</p>
+        </figcaption>
+    </figure>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
