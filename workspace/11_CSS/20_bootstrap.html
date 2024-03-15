@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 기기(디바이스)별 크기를 인식하고 1.0으로 어떤 디바이스라도 1배 확대 된 사이즈로 보여준다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS(압축되고 최소화된 최신의 css 파일) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library(관련 jQuery 코드 제공) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS(드롭다운 메뉴나 팝업 창에 도움을 준다.) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript(관련 자바스크립트 코드 제공) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 위의 4가지가 있다면 w3school의 예제들을 손쉽게 다룰 수 있다. -->
+
+    <title>Document</title>
+</head>
+<body>
+    <h3>Small Buttons: </h3>
+    <!-- div.btn-group.btn-group-sm -->
+    <div class="btn-group btn-group-sm">
+        <!-- button[type="button" class="btn btn-primary"]*3 -->
+        <button type="button" class="btn btn-primary">Apple</button>
+        <button type="button" class="btn btn-primary">Samsung</button>
+        <button type="button" class="btn btn-primary">Sony</button>
+    </div>
+
+    <button>일반버튼</button>
+    <button class="btn">btn</button>
+    <button class="btn btn-primary">파란색</button>
+    <button class="btn btn-success">초록색</button>
+
+    <!-- table>(tr>td*3)*4 -->
+    <table class="table">
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td>김용승</td>
+            <td>19</td>
+            <td>화이팅</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>21</td>
+            <td>동해번쩍</td>
+        </tr>
+        <tr>
+            <td>춘향이</td>
+            <td>22</td>
+            <td>아부지심봉사</td>
+        </tr>
+    </table>
+
+    <!-- 반응형 웹을 위한 grid system 활용 -->
+    <!-- container 및 container-fluid를 활용해서 하자-->
+    <!--
+         container는 정해진 고정 넓이의 wrapper 개념으로 사용
+         container-fluid는 화면에 꽉 차게 표현
+    -->
+    <!--
+        .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        }
+        @media (min-width: 768px) {
+        .container {
+            width: 750px;
+        }
+        }
+        @media (min-width: 992px) {
+        .container {
+            width: 970px;
+        }
+        }
+        @media (min-width: 1200px) {
+        .container {
+            width: 1170px;
+        }
+        }
+        .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        }
+    -->
+    <!--  
+         .col-xs-* : 항상 가로
+         .col-sm-* : 768px 이하에서 세로
+         .col-md-* : 992px 이하에서 세로
+         .col-lg-* : 1200px 이하에서 세로로 표시 시작 
+    -->
+    <div class="container-fluid" >
+        <div class="row">
+            <div class="col-xs-3">.col-xs-3</div>
+            <div class="col-xs-3">.col-xs-3</div>
+            <div class="col-xs-3">.col-xs-3</div>
+            <div class="col-xs-3">.col-xs-3</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">.col-sm-3</div>
+            <div class="col-sm-3">.col-sm-3</div>
+            <div class="col-sm-3">.col-sm-3</div>
+            <div class="col-sm-3">.col-sm-3</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">.col-md-3</div>
+            <div class="col-md-3">.col-md-3</div>
+            <div class="col-md-3">.col-md-3</div>
+            <div class="col-md-3">.col-md-3</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">.col-lg-3</div>
+            <div class="col-lg-3">.col-lg-3</div>
+            <div class="col-lg-3">.col-lg-3</div>
+            <div class="col-lg-3">.col-lg-3</div>
+        </div>
+    </div>
+</body>
+</html>
