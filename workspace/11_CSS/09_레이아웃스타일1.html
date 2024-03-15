@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .block {
+            width: 150px;
+            height: 130px;
+            border: 1px solid black;
+            color: white;
+            padding-top:20px;
+            padding-left: 20px;
+        }
+        .area1 {
+            background-color: red;
+        }
+        .area2 {
+            background-color: orange;
+        }
+        .area3 {
+            background-color: yellowgreen;
+        }
+        .area4 {
+            background-color: green;
+        }
+        .area5 {
+            background-color: blue;
+        }
+
+        /* 인라인 요소는 width, height가 적용되지 않는다. */
+        .block-test1 {
+            display: inline;
+        }
+        .block-test2 {
+            display: inline-block;
+            margin-left: -6px;
+        }
+        .block-test3 {
+            display: block;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h3>화면 배치 방법 변경</h3>
+    <h4>블럭 요소를 인라인 요소로 변환</h4>
+    <p>블럭 요소와 인라인 요소의 속성을 변경하여 배치 방식을 변경할 수 있다.</p>
+    <!-- (div[class="block block-test1 area$"]{첫 번째 영역})*5 -->
+    <div class="block block-test1 area1">첫 번째 영역</div>
+    <div class="block block-test1 area2">두 번째 영역</div>
+    <div class="block block-test1 area3">세 번째 영역</div>
+    <div class="block block-test1 area4">네 번째 영역</div>
+    <div class="block block-test1 area5">다섯 번째 영역</div>
+
+    <h4>블럭 요소를 인라인 블럭 요소로 변환</h4>
+    <p>영역은 인라인 요소로 변경되지만 내용은 블럭요소가 되어 width와 height 속성을 설정할 수 있다.
+        (다만, 요소 간에 작은 간격이 존재)</p>
+    <div class="block block-test2 area1">첫 번째 영역</div>
+    <div class="block block-test2 area2">두 번째 영역</div>
+    <div class="block block-test2 area3">세 번째 영역</div>
+    <div class="block block-test2 area4">네 번째 영역</div>
+    <div class="block block-test2 area5">다섯 번째 영역</div>    
+
+    <h4>인라인 요소를 블럭 요소로 변환</h4>
+    <p>인라인 요소를 블럭 요소로 변경하면 width와 height값을 지정할 수 있고
+         세로로 쌓인다.</p>
+    <span class="block block-test3 area1">첫 번째 영역</span>
+    <span class="block block-test3 area2">두 번째 영역</span>
+    <span class="block block-test3 area3">세 번째 영역</span>
+    <span class="block block-test3 area4">네 번째 영역</span>
+    <span class="block block-test3 area5">다섯 번째 영역</span>    
+</body>
+</html>

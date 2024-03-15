@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: rgba(255, 0, 0, 0.203);
+        }
+        #div-bg {
+            width: 50%;
+            background: white;
+        }
+        .div-test {
+            background-color: white;
+
+            padding: 20px;
+            width: 20%;
+            border: 5px dashed black;
+            float: right;
+        }
+
+        #div1 {
+            background-clip: border-box;
+        }
+        #div2 {
+            background-clip: padding-box;
+        }
+        #div3 {
+            background-clip: content-box;
+        }
+        .clearfloat {
+            clear: both;
+        }
+
+        #bg-img {
+            width: 70%;
+            height: 1600px;
+            border: 4px solid red;
+
+            /* 기본적으로 배경에 비해 이미지가 적으면 반복(repeated)된다. */
+            background-image: url('sample/image/flower1.PNG');
+
+            background-repeat: no-repeat;
+
+            background-size: cover;
+
+            /* 이미지가 짤리지 않는(크롭되지 않는) 선에서 최선의 방법으로 표시 */
+            background-size: contain;
+            
+            background-attachment: fixed;
+            background-attachment: scroll;
+
+            background-size: auto;
+
+            background-position: 50% 50%;
+            background-position: 30px 50px;
+            background-position: right;
+            
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>배경색과 배경 이미지</h1>
+    <h3>div 배경 테스트</h3>
+    <pre>div 영역을 설정하는 경우 배경색을 지정하기 위해서는 div에 배경 색을 별도로 지정해야 한다.</pre>
+    <div id="div-bg">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+
+    <h3>배경 적용 범위 조정(feat.엘리먼트의 구성 요소(padding, border, margin))</h3>
+    <pre>div 영역의 배경 적용 범위를 지정할 때 background-clip 속성을 사용한다.</pre>
+    <div class="div-test" id="div1">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+    <div class="div-test" id="div2">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+    <div class="div-test" id="div3">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+
+    <!--
+        float을 통해 블럭 요소(div 태그 같은)를 인라인 요소처럼 배치하였을 때 이후 다시 원상복귀를 위해서는 clear의 개념이
+        필요하다. 
+        태그의 attribute로 적용(clear="both")할 수도 있지만 css로 만들어 두고 class명을 통해 float을 clear하는 것을 권장한다.        
+    -->
+    <!-- <br clear="both"> -->
+    <p class="clearfloat">fdsafdsafsdafsadf</p>
+    <div>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </div>
+    
+    <h3>배경 이미지 테스트</h3>
+    <pre>background-image 속성을 이용하여 배경 사진을 넣을 수 있다. 사진의 크기에 따라 이미지 사이즈를 고민해야 한다.</pre>
+    <!-- div#bg-img -->
+    <div id="bg-img"></div>
+</body>
+</html>

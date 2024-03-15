@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 내부 스타일 시트 방식 -->
+    <style>
+ 
+        /* 속성 값과 일치하는 객체(태그, 요소) 선택 */
+        div[name=name2] {
+            background: orangered;
+        }
+
+        /* 속성 안의 값이 특정 단어(띄어쓰기 단위)로써 포함되는 객체 선택 */
+        div[name~=name1] {
+            background: yellow;
+        }
+
+        /* 속성 값이 특정 값과 일치하거나 '-'문자가 곧바로 해당 값 뒤에 따라붙는 객체 선택 */
+        div[class|=class] {      /* class 또는 class- */
+            background: cyan;
+        }
+
+        /* 속성 값을 가지고 있으며, 접두사로 특정 값이 포함되어 있는 객체 선택 */
+        div[name^=name] {
+            background: blue;
+        }
+
+        /* 속성 안의 값이 특정 값으로 끝나는(접미사) 객체 선택 */
+        div[class$=class] {
+            color: white;
+        }
+
+        /* 속성 안의 값이 특정 값을 포함하는 객체 선택 */
+        div[class*=div] {
+            background: yellow;
+            color: red;
+        }
+
+        /* 자손 선택자 */
+        #test1>h4 {
+            background:hotpink;
+        }
+
+        /* 자손에 자손을 선택 */
+        #test1>ul>li {
+            background:cyan;
+        }
+
+        /* 후손 선택자 */
+        #test1 ul {
+            background: yellow;
+        }
+
+        /* 동일한 선택자를 또 사용해도 상관이 없지만 동일한 속성일 경우 이후 작성한 것이 우선순위가 높다. */
+        #test1 ul {
+            background: red;
+        }
+
+        #div-test1 {
+            background: red;
+        }
+
+        /* 형제관계 선택자(동위 선택자) */
+        #div-test1 + div {
+            background: yellow;
+        }
+
+        /* 해당 요소 바로 다음에 특정 타입의 요소를 모두 선택 */
+        #div-test2 ~ div {
+            background: purple;
+            color: white;
+        }
+        
+        /* 동일한 css 속성을 여러 대상에 적용하고 싶을 때는 콤마(,)를 찍는다. */
+        #active-test, #hover-test {
+            width:300px;
+            height:300px;
+            background:orangered;
+        }
+
+        
+        #active-test:active {
+            background: yellow;
+            color: white;
+        }
+
+        
+        #hover-test:hover {
+            cursor: pointer;
+            background: cyan;
+            color: purple;
+            font: 40px bold;
+        }
+
+        input[type=checkbox]:checked {
+            width: 20px;
+            height: 20px;
+        }
+        
+        #userId:focus, #userPwd:focus {
+            background: green;
+        }
+
+        option:disabled {
+            background: red;
+            color: white;
+        }
+
+        option:enabled {
+            background: yellowgreen;
+        }
+
+        input:disabled {
+            background: blue;
+        }
+        
+        
+    </style>
+
+    <!-- 외부 스타일시트 방식 -->
+    <!-- <link rel="stylesheet" href="selector2.css"> -->
+    <title>CSS3 선택자2</title>
+</head>
+<body>
+    <h2>기본 속성 선택자</h2>
+    <p>기본 선택자 뒤에 []를 사용하여 속성과 속성값을 사용한다.
+       (주로 id나 class 속성 아닌 것들에 적용)
+    </p>
+    <pre> 선택자[속성=속성값] {설정내용}의 형식으로 사용된다.</pre>
+    <div name="name1 name5 name6" class="div-class">div 1</div>
+    <div name="name2" class="div-class">div 2</div>
+    <div name="name3" class="div-class">div 3</div>
+    <div name="name4" class="class-div">div 4</div>
+
+    <hr>
+    <h2>후손 선택자와 자손 선택자</h2>
+    <p>자손 선택자: 바로 아래의 요소, 후손 선택자: 하위 요소 전부</p>
+    <pre>자손 선택자: 선택자>자손선택자{설정내용}의 형식으로 사용,
+         후손 선택자: 선택자 후손선택자{설정내용}의 형식으로 사용
+    </pre>
+    <div id="test1">
+        <h4>자손입니다.</h4>
+        <h4>나도 자손입니다.</h4>
+        <div>
+            <ul id="testul">리스트
+                <li>나는 ul의 자손이면서 동시에 div의 후손입니다.</li>
+                <li>나도 ul의 자손이면서 동시에 div의 후손입니다.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+    <h2>동위 선택자</h2>
+    <p>동위 관계(형제 관계)에서 뒤에 위치한 태그를 선택할 때 사용한다.</p>
+    <pre>바로 뒤의 요소 선택 시 : 선택자a + 선택자b {설정내용}으로 사용하며,
+         뒤에 있는 모두를 선택할 때는 선택자a ~ 선택자b {설정내용}으로 사용된다.
+    </pre>
+    <div id="div-test1">div test1</div>
+    <div id="div-test2">div test2</div>
+    <div id="div-test3">div test3</div>
+    <div id="div-test4">div test4</div>
+    <div id="div-test5">div test5</div>
+    
+    <script type="text/javascript">
+        
+        /* 나중에 javascript에서 다룰 때는 태그가 객체(object)의 개념이 된다. */
+        window.onload = function(){
+            let secondDiv = document.querySelector('div[name=name2]');
+            console.log(typeof secondDiv);
+        }
+    </script>
+
+    <hr>
+    <h2>반응 선택자</h2>
+    <p>사용자의 움직임에 따라 달라지는 선택자</p>
+    <pre>사용자가 클릭한 태그: 선택자:active{설정내용}, 
+사용자의 마우스가 올라가 있는 태그: 선택자:hover{설정내용}으로 사용된다.</pre>
+    <div id="active-test">active 테스트</div>
+    <div id="hover-test">hover 테스트</div>
+
+    <hr>
+    <h2>상태 선택자</h2>
+    <p>입력 양식의 상태에 따라 선택되는 선택자</p>
+    <pre>체크 상태의 input태그 선택: input태그:checked{설정내용}</pre>
+    <!-- input[type="checkbox" name="fruits" value="사과"]#apple+label[for="apple"]{사과} -->
+    <input type="checkbox" name="fruits" value="사과" id="apple" >
+    <label for="apple">사과</label>
+    
+    <input type="checkbox" name="fruits" value="바나나" id="banana">
+    <label for="banana">바나나</label>
+    <input type="checkbox" name="fruits" value="복숭아" id="peach">
+    <label for="peach">복숭아</label>
+
+    <hr>
+    <p>초점이 맞추어진 input태그 선택</p>
+    <label for="userId">아이디: </label>
+    <input type="text" id="userId" placeholder="아이디를 입력하세요"><br>
+    <label for="userPwd">패스워드: </label>
+    <input type="password" id="userPwd" placeholder="비밀번호를 입력하세요"><br>
+    
+    <p>사용 가능한 input태그선택</p>
+    <pre>태그:enabled{설정내용}, 태그:disabled{설정내용}</pre>
+    <h3>당신의 연령대는?</h3>
+    <select>
+        <option value="10" disabled>10대</option>
+        <option value="20">20대</option>
+        <option value="30">30대</option>
+        <option value="40">40대</option>
+        <option value="50">50대</option>
+        <option value="60" disabled>60대</option>
+    </select>
+
+    <input type="text" disabled>
+    <button disabled>버어튼</button>
+</body>
+</html>

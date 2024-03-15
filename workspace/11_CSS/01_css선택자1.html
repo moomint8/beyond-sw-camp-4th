@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 1. 내부 스타일 시트 방식 -->
+    <style>
+        /* css주석(내부 스타일 시트 방식의 style태그 안에서는 범위 주석 형태만 가능하다.(// 안됨)) */
+        /* 모든 태그들을 선택할 때는 '*' 기호를 사용한다. */
+        * {
+            color:red;
+        }
+
+        p {
+            color: pink;
+        }
+
+        #id4 {
+            color: hotpink;
+        }
+
+        .class1 {
+            color: aquamarine;
+        }
+    </style>
+
+    <!-- 2. 외부 스타일 시트 방식(내부 스타일시트보다 우선순위가 높다) -->
+    <!-- <link rel="stylesheet" href="css/selector.css"> -->
+
+    <title>Document</title>
+</head>
+<body>
+    <!-- 바디 내부 주석 -->
+    <!-- 3. 인라인 방식(세 가지 방식 중에서는 우선순위가 가장 높다.) -->
+    <h1 style="color: purple;">CSS 기본 선택자</h1>
+    <p>
+        선택자(selector)란?<br>
+        특정한 HTML 태그를 선택할 때 사용하는 기능으로, 태그를 선택하여 원하는 스타일과 기능을 적용할 수 있다.
+    </p>
+    <hr>
+    <h2>모든 선택자</h2>
+    <p>HTML 문서 안의 모든 태그를 선택할 때 전체 선택자를 사용할 수 있다.</p>
+    <hr>
+    <h2>태그 선택자</h2>
+    <p>HTML 문서 내에 같은 태그를 모두 선택할 때 사용한다.</p>
+    <hr>
+    <h2>아이디 선택자</h2>
+    <p>HTML 문서 내에 해당하는 아이디 속성의 값을 가진 태그만 선택할 때 사용한다.</p>
+    <!-- ol>li[id=id$]*5 -->
+    <!-- ol>li[id=id$]{아이디 선택자 테스트$}*5 -->
+    <ol>
+        <li id="id1">아이디 선택자 테스트1</li>
+        <li id="id2">아이디 선택자 테스트2</li>
+        <li id="id3">아이디 선택자 테스트3</li>
+        <li id="id4">아이디 선택자 테스트4</li>
+        <li id="id5">아이디 선택자 테스트5</li>
+    </ol>
+    <h2>클래스 선택자</h2>
+    <p>
+        HTML 문서 내에 여러 개의 태그를 통일한 클래스명으로 복수 선택해서 지정하여 사용한다.
+        (css는 웬만하면 하나의 element라도 class로 적용하자.)
+    </p>
+    <!-- ul>(li[class=class$]{클래스 선택자$})*5 -->
+    <ul>
+        <li class="class1">클래스 선택자1</li>
+        <li class="class2">클래스 선택자2</li>
+        <li class="class1">클래스 선택자3</li>
+        <li class="class2">클래스 선택자4</li>
+        <li class="class1">클래스 선택자5</li>
+    </ul>
+
+    <button>클릭</button>
+
+    <script type="text/javascript">
+        let btn = document.querySelector('button');
+
+        btn.onclick = () => {
+            let testli = document.querySelectorAll('ul>li.class2');
+
+            for (let li = 0; li < testli.length; li++) {
+                testli[li].style.backgroundColor = 'red';
+            }
+        }
+
+        window.onload = function() {
+            let idTeg = document.getElementById('id6');
+            console.log(idTeg);
+        }
+    </script>
+</body>
+</html>
