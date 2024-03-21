@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_insertAdjacentHTML</title>
+</head>
+<body>
+    <h1>02. insertAdjacentHTML</h1>
+    <p>insertAdjacentHTML(position, DOMString) 메소드는 기존 요소를 제거하고 새로 만들어 추가하지 않고(innerHTML과 달리)
+        기존 요소 제거 없이 새로운 요소만 추가하게 된다.
+        그리고 위치를 지정해 새로운 요소를 삽입할 수 있으며 첫번째 인수로 전달할 수 있는 position관련 문자열은
+        'beforebegin', 'afterbegin', 'beforeend', 'afterend' 4가지이다.
+
+       insertAdjacentHTML 메소드는 기존 요소에 영향을 주지 않고 새롭게 삽입 될 요소만을 파싱하여 자식 요소로
+       추가하므로 기존의 자식 노드를 모두 제거하고 처음부터 새롭게 자식 노드를 생성하여 자식 요소로 추가하는
+       innerHTML 프로퍼티보다 효율적이고 빠르다.
+       단, HTML 마크업 문자열을 파싱하므로 크로스 사이트 스크립팅 공격(XSS)에 취약하다는 점은 동일하다.
+    </p>
+
+    <div id="area">
+        insertAdjacentHTML 메소드 사용 테스트
+    </div>
+
+    <script>
+        const $area = document.getElementById("area");
+
+        $area.insertAdjacentHTML('beforebegin', '<h1>beforebegin 테스트</h1>');
+        // $area.insertAdjacentHTML('beforebegin', '<h1>beforebegin 테스트</h1><input type="text" onblur="alert(`메롱`);">');
+        $area.insertAdjacentHTML('afterbegin', '<h1>afterbegin 테스트</h1>');
+        $area.insertAdjacentHTML('beforeend', '<h1>beforeend 테스트</h1>');
+        $area.insertAdjacentHTML('afterend', '<h1>afterend 테스트</h1>');
+    </script>
+</body>
+</html>

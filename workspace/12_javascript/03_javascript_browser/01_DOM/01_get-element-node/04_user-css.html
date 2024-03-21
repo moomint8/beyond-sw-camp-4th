@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px solid lightgray;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>04. css 선택자를 이용한 요소 노드 취득</h1>
+
+    <div class="area">
+        <p>first</p>
+    </div>
+    <div class="area">
+        <p>second</p>
+    </div>
+
+    <script>
+
+        // querySelector 또는 querySelectorAll을 쓰면 CSS에서 쓰던 선택자를 그대로 활용할 수 있다.
+        // const $area = document.querySelector('.area');   // 첫 번째 요소 하나만 선택
+        const $area = document.querySelectorAll('.area');   // 선택자에 해당하는 모든 요소들을 NodeList(유사배열) 타입으로 반환
+        console.log($area);
+
+        const $firstP = document.querySelector('p');
+        $firstP.style['background-color'] = 'green';
+    </script>
+</body>
+</html>

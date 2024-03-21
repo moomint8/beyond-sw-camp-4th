@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>03. addEventListener 메소드 방식</h1>
+    <p>
+        요소 노드에서 제공하는 addEventListener 메소드를 사용하는 방식이다.
+    </p>
+
+    <button id="btn">클릭미클릭미!</button>
+
+    <script>
+        const $button = document.getElementById("btn");
+
+        $button.addEventListener("click", function(){
+            alert('클릭했네?');
+        });
+
+        $button.addEventListener("click", function(){
+            console.log('addEventListener 메소드 방식으로 이벤트 핸들러 등록');
+        });
+    </script>
+</body>
+</html>

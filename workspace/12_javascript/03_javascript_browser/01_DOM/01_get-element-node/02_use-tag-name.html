@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>02. 태그 이름을 이용한 요소 노드 취득</h2>
+    <ul id="food">
+        <li>김치찌개</li>
+        <li>된장찌개</li>
+        <li>고등어구이</li>
+    </ul>
+    <ul id="drink">
+        <!-- ul#drink>li*3 -->
+        <li>커피</li>
+        <li>콜라</li>
+        <li>우유</li>
+    </ul>
+    <script>
+        const $ul = document.getElementById('food');
+        console.log($ul);
+
+        const $lists = document.getElementsByTagName('li');
+        console.log($lists);
+        // html collection이라고 하는 유사 배열로 넘어옴
+
+        // 첫번째 리스트의 이름만 뽑아낼 수 있음
+        console.log($lists[0].innerText)
+        console.log($lists[1].innerText)
+
+        let changeColor = 0;
+        for(let i = 0; i < $lists.length; i++) {
+            console.log(`${i}번째에 담긴 값: ${$lists[i].innerText}`);
+
+            $lists[i].style.backgroundColor = "rgb(130, 220, " + changeColor + ")";
+            changeColor += 50;
+
+        }
+
+        console.log(Object.getOwnPropertyDescriptors($lists));
+
+        //  HTMLCollection 타입을 forEach를 활용하여 배경색 적용하기
+        [...$lists].forEach(list => list.style.color = 'blue');
+
+        const $drink =document.getElementById('drink');
+        const $noElements = $drink.getElementsByTagName('a');
+        console.log($drink);
+        console.log($noElements);   // 존재하지 않는 요소는 빈 HTMLCollection이 나온다.
+    </script>
+</body>
+</html>
