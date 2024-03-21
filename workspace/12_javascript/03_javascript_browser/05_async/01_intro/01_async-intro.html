@@ -6,31 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
+<script>
 
-        /*
-            동기 작업과 비동기 작업
-            - 동기 작업: 하나의 작업을 실행하고 마친 뒤에 다음 작업을 순차적으로 진행함(blocking)
-            - 비동기 작업: 메인 흐름은 멈추지 않는 상태에서 특정 작업들을 백그라운드에서 처리하여
-                          동시에 처리하는 것처럼 실행함(non-blocking)
+    /*
+        동기 작업과 비동기 작업
+        동기 작업: 하나의 작업을 실행하고 마친 뒤에 다음 작업을 순차적으로 진행함(블로킹)
+        비동기 작업: 메인 흐름은 멈추지 않는 상태에서 특정 작업들을 백그라운드에서 처리하여
+                    동시에 처리하는 것처럼 실행함(넌블로킹)
 
-            비동기 작업을 할 때 가장 많이 사용하는 방식이 콜백 함수를 이용하는 방식이다.
-        */
+        비동기 작업을 할 때 가장 많이 사용하는 방식이 콜백 함수를 이용하는 방식이다.
+    */
 
-        function sayHello() {
-            console.log('Hello World!');
-        }
+    function sayHello() {
+        console.log("Hello World!");
+    }
 
-        /* 아래 코드는 동기식으로 작성한 순서대로 실행된다. */
-        // sayHello();
-        // console.log('end');
+    /* 아래 코드는 동기식으로 작성한 순서대로 실행된다. */
+    // sayHello();
+    // console.log('end');
 
-        /*
-            아래 코드는 실행할 코드를 setTimeout의 첫 번째 인수로 콜백함수로써 넘겨주고
-            실행은 비동기식으로 작성 순서와 상관없이 진행된다.(병렬적으로)
-        */
-        setTimeout(sayHello, 3000);
-        console.log('end');
-    </script>
+    /*
+        아래 코드는 실행할 코드를 setTimeout의 첫번 째 인수로 콜백함수로써 넘겨주고
+        실행은 비동기식으로 작성 순서와 상관 없이 실행된다.(병렬적으로)
+    */
+    setTimeout(sayHello, 3000);
+    console.log('end');
+</script>
 </body>
 </html>

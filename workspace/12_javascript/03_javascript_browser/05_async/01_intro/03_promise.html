@@ -6,55 +6,57 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-        function increase(number) {
-            const promise = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const result = number + 10;
+<script>
+    function increase(number) {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const result = number + 10;
 
-                    if(result > 50) {
-                        const e = new Error('Number too large');
+                if(result > 50) {
+                    const e = new Error('NumberTooBig');
 
-                        return reject(e);
-                    }
+                    return reject(e);
+                }
 
-                    return resolve(result);
-                }, 1000);
-            })
+                return resolve(result);
+            }, 1000);
+        })
 
-            return promise;
-        }
-            
-        console.log(increase(0));
+        return promise;
 
-        // increase(0)
-        //     .then(result => console.log(result));
+    }
 
-        increase(0)
-            .then(result => {
-                console.log(result);
+    console.log(increase(0));
 
-                return increase(result);
-            })
-            .then(result => {
-                console.log(result);
+    // increase(0)
+    //     .then(number => console.log(number));
 
-                return increase(result);
-            })
-            .then(result => {
-                console.log(result);
+    increase(0)
+        .then(number => {
+            console.log(number);
 
-                return increase(result);
-            })
-            .then(result => {
-                console.log(result);
+            return increase(number);
+        })
+        .then(number => {
+            console.log(number);
 
-                return increase(result);
-            })
-            .then(result => {
-                console.log(result);
-                console.log('end');
-            })
-    </script>
+            return increase(number);
+        })
+        .then(number => {
+            console.log(number);
+
+            return increase(number);
+        })
+        .then(number => {
+            console.log(number);
+
+            return increase(number);
+        })
+        .then(number => {
+            console.log(number);
+            console.log('end');
+        });
+
+</script>
 </body>
 </html>

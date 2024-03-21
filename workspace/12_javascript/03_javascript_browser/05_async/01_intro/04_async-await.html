@@ -6,57 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
+<script>
 
-        /* promise를 더 쉽게 사용할 수 있게 async/await가 ES8(2017)에서 추가되었다. */
+    /* promise를 더 쉽게 사용할 수 있게 async/await가 ES8(2017)에서 추가되었다. */
 
-        function increase(number) {
-            const promise = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const result = number + 10;
+    function increase(number) {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const result = number + 10;
 
-                    if(result > 50) {
-                        const e = new Error('Number too large');
+                if(result > 50) {
+                    const e = new Error('NumberTooBig');
 
-                        return reject(e);
-                    }
+                    return reject(e);
+                }
 
-                    return resolve(result);
-                }, 1000);
-            })
+                return resolve(result);
+            }, 1000);
+        })
 
-            return promise;
-        }
+        return promise;
+    }
+</script>
 
-        /*
-            await의 두 가지 기능
-            1. await가 달린 함수의 결과인 promise에 담긴 결과(promise 내부의 resolve에 담긴 성공 결과)를 반환한다.(then과 비슷)
-            2. await가 달린 비동기 처리들은 그들 간에는 동기식으로 동작하게 된다.
-            (await를 쓰기 위해서 함수에 async를 달면 그 async 함수는 promise를 반환한다.)
-        */
-        async function run() {
-            let result = await increase(0);
-            console.log(result);
-
-            result = await increase(result);
-            console.log('1', result);
-
-            result = await increase(result);
-            console.log('2', result);
-
-            result = await increase(result);
-            console.log('3', result);
-
-            result = await increase(result);
-            console.log('4', result);
-            console.log('end');
-
-            return 1;
-        }
-
-        run();
-        console.log('반환값: ', run());
-        run().then(result => console.log('.then 반환값: ', result));
-    </script>
 </body>
 </html>
