@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>02. interval</h1>
+
+    <!-- 지정한 기간마다 콜백 함수 실행 -->
+    <h3>setInterval</h3>
+
+    <script>
+        let count = 1;
+
+        // setInterval 안에 setInterval를 하면 비동기기 때문에 안에 있던 setInterval이 종료된 후 밖에 setInterval가 마무리된다.
+        // 이런 과정이 심화되면 콜백지옥이 펼쳐진다.
+        const timeId = setInterval(() => {
+            console.log(count);
+            count++;
+            if (count == 6) {
+                clearInterval(timeId);
+                console.log('interval timer 종료!');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

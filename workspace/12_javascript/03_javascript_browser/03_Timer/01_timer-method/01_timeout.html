@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>01. timeout</h1>
+
+    <h3>setTimeout</h3>
+    <p>
+        setTimeout(func, time, arg1, ...);<br>
+
+        setTimeout 함수는 두 번째 인수로 전달받은 시간(ms, 1/1000초)으로 단 한 번 동작하는 타이머를 생성한다.<br>
+        이후 타이머가 만료되면 첫 번째 인수로 전달받은 콜백 함수가 호출된다.<br>
+        콜백 함수에 전달해야 하는 인수가 존재하는 경우 세 번째 이후의 인수로 전달할 수 있다.
+    </p>
+
+    <script>
+
+        // setTimeout 인수 첫 번째 콜백함수를 던짐, 두 번째 ms단위 초
+        setTimeout(() => console.log('실행'), 1000);
+    </script>
+
+    <button onclick="clearTimeoutFunc();">당장 취소</button>
+
+    <script>
+        const timeId = setTimeout(() => console.log('나는 곧 취소될 거야'), 6000);
+
+        function clearTimeoutFunc() {
+            console.log('곧이 아니라 지금 당장 취소');
+
+            // 매개변수로 던져진 setTimeout 함수 무효화
+            clearTimeout(timeId);
+        }
+    </script>
+</body>
+</html>
