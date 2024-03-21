@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number, callback) {
+            setTimeout(() => {
+                const result = number + 10;
+
+                if (callback) {
+                    callback(result);
+                }
+            }, 5000);
+        }
+
+        // 단순히 한 번 정도는 난해하진 않다.
+        increase(0, result => console.log(result));
+
+        /*
+            여러 번 순차적으로 비동기 함수 호출의 결과들을 다음 콜백 함수로 던지기 위해서는
+            중첩을 사용해서 호출할 수 있다.
+
+            하지만 이러한 형태는 가독성도 좋지 않고 유지보수도 힘든 피해야 하는 패턴(안티패턴)
+            중 하나이다.
+
+            이러한 형태를 콜백 지옥(callback hell)이라고 하고, 사용하지 않도록 하자.
+
+            (가장 바같쪽 비동기 처리가 끝나고 안쪽 비동기 처리가 시작된다.)
+        */
+        console.log("start");
+        increase(0, result => {
+            console.log(result);
+            increase(result, result => {
+                console.log(result)
+                increase(result, result => {
+                        console.log(result)
+                        increase(result, result => {
+                            console.log(result)
+                            increase(result, result => {
+                            console.log(result)
+                            console.log('end');
+                        });
+                    });
+                });
+            });
+        });
+
+        /* 중첩 없이 비동기 함수들을 호출하면 마치 동시에 출발했다가 종료되는 것처럼 병렬적으로 동작한다. */
+        // increase(100, result => {
+        //     console.log(result);
+        // })
+
+        // increase(200, result => {
+        //     console.log(result);
+        // })
+
+        // increase(300, result => {
+        //     console.log(result);
+        // })
+
+        console.log('end');
+    </script>
+</body>
+</html>
