@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. use-class</title>
+</head>
+<body>
+    <h1>03. class를 이용한 요소 노드 취득</h1>
+
+    <ul id="available">
+        <li class="drink coffee"><p>커피</p></li>
+        <li class="drink coke">콜라</li>
+        <li class="drink milk">우유</li>
+    </ul>
+    <ul id="unavailable">
+        <li class="drink soju">소주</li>
+        <li class="drink beer">맥주</li>
+    </ul>
+    <script>
+
+        const $drinks = document.getElementsByClassName("drink");
+        console.log($drinks);
+        console.log($drinks.length);
+
+        [...$drinks].forEach(drink => drink.style.color = 'red');
+
+        const $coffee = document.getElementsByClassName('drink coffee');
+        console.log($coffee[0].innerHTML);          // 텍스트 노드(시작태그와 종료태그 사이)에서 html을 포함한 내용 추출
+        console.log($coffee[0].innerText);          // 텍스트 노드에서 html을 제외한 문자열만 추출
+
+       const $available = document.getElementById('available');
+       const $availableDrinks = $available.getElementsByClassName('drink');
+       console.log($availableDrinks);
+       
+       const $noElem = $available.getElementsByClassName('somac');
+       console.log($noElem);
+    </script>
+</body>
+</html>

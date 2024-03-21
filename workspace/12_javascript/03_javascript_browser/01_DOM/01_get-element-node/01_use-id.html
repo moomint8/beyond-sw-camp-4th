@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .area {
+            width: 100px;
+            height: 100px;
+            border: 1px solid lightgray;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1>01. id를 이용한 요소 노드 취득</h1>
+
+    <div id="area1" class="area">
+        <!-- #으로 하면 id .으로 하면 class -->
+        div 영역1
+        <p id="area3" class="area">p 영역</p>
+    </div>
+    <!-- <div id="area1" class="area"> -->
+    <div id="area2" class="area">
+        div 영역2
+    </div>
+    <script>
+        // js 여기에 코드 쓰기
+        // alt L O 눌러서 킨 후 f12 눌러서 확인
+
+        /* 변수 이름 앞에 $ 표시를 두는 이유는 html 요소를 지니고 있음을 구분하기 위한 관례상 변수 네이밍 규칙 */
+        /* 아이디가 중복될 경우는 첫번째 요소 하나만 반환된다. */
+        const $elem = document.getElementById("area1");
+        // 태그 보기
+        console.log($elem);
+        console.log($elem.style);
+
+        /* 요소의 스타일 속성을 이용해서 css 적용(낙타봉 표기법 또는 케밥표기법(대괄호로 접근)) */
+        $elem.style.backgroundColor = "blue";
+        // 자바스크립트에서 프로퍼티로 접근해서 할 수도 있음
+        // 어트리뷰트로 추가하는 거랑 똑같음
+        // 다른 점: 사용자의 이벤트가 발생됨으로 인해서 동적으로 DOM을 건드려야 한다면 자바스크립트를 켜야 됨 -> 그럴 때 사용됨
+
+        // 여기서는 낙타봉 표기법이지만 css는 케밥 표기법
+        $elem.style['background-color'] = 'orange';
+        // 대괄호로 접근하면 케밥 표기법으로도 가능 
+
+        /* id 속성 값을 그대로 딴 이름으로 접근도 가능하긴 하다.(추천 X) */
+        area1.style.backgroundColor = 'pink';
+
+        /* 존재하지 않는 id에 접근할 경우 null을 반환한다. */
+        const $elem2 = document.getElementById("area4");
+        console.log($elem2);
+    </script>
+</body>
+</html>
