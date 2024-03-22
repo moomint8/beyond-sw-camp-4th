@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        div {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .custom-input input {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-model
+    -->
+    <div id="step01">
+        <div>
+            <h4>name: {{name}}</h4>
+            <h4>address: {{address}}</h4>
+            <h4>age: {{age}}</h4>
+            <h4>introduce: {{introduce}}</h4>
+        </div>
+        <label>이름: </label><input type="text" v-model="name">
+        <br>
+        <label>주소: </label><input type="text" v-model="address">
+        <br>
+
+        <!-- 
+            type=number와 같은 기능을 수행한다.
+            숫자로 변환할 수 없으면 v-model에 담기지 않는다.
+         -->
+        <label>나이: </label><input type="text" v-model="age">
+        <br>
+        <!-- trim은 앞 뒤 공백을 제거하는 v-model의 옵션이다. -->
+        <label>자기소개: </label><input type="text" v-model.trim="introduce">
+    </div>
+
+    <!-- textarea -->
+    <div id="step02">
+        <p>vue에 대한 생각을 써주세요: {{message}}</p>
+        <textarea v-model="message"></textarea>
+        <br>
+
+        <!-- 
+            lazy 설정을 추가하는 경우 입력과 동시에가 아닌 blur 이벤트(포커스를 잃고 다른 곳을 클릭) 시에 동작한다.
+         -->
+        <p>느리게 반영되는 msg: {{msg}}</p>
+        <textarea v-model.lazy="msg"></textarea>
+    </div>
+
+    <!-- select -->
+    <div id="step03">
+        <p>단일 선택 : {{selected}}</p>
+        <select v-model="selected" @change="check">
+            <option value="apple"> apple</option>
+            <option value="pineapple">pineapple</option>
+            <option value="grape">grape</option>
+        </select>
+        <br>
+        <p>다중 선택 : {{fruits}}</p>
+
+        <!-- multiple 속성일 때는 v-model을 통한 fruits에 선택 결과가 배열로 담긴다. -->
+        <select v-model="fruits" multiple>
+            <option value="apple"> apple</option>
+            <option value="pineapple">pineapple</option>
+            <option value="grape">grape</option>
+        </select>
+    </div>
+
+    <div id="step04">
+        <p>과일 목록 : {{fruits}}</p>
+        <input type="checkbox" id="apple" name="check" value="apple" v-model="fruits" />
+        <label for="apple">apple</label>
+        <input type="checkbox" id="pineapple" name="check" value="pineapple" v-model="fruits" />
+        <label for="pineapple">pineapple</label>
+        <input type="checkbox" id="grape" name="check" value="grape" v-model="fruits" />
+        <label for="grape">grape</label>
+
+        <br>
+
+        <p>toggle : {{toggle}}</p>
+        <input type="checkbox" v-model="toggle" :true-value="dynamicTrueValue" :false-value="dynamicFalseValue" />
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup() {
+                const name = ref('');
+                const address = ref('');
+                const age = ref(0);
+                const introduce = ref('');
+
+                return {
+                    name,
+                    address,
+                    age,
+                    introduce
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup() {
+                const message = ref('');
+                const msg = ref('');
+                
+                return {
+                    message,
+                    msg
+                }
+            }
+        }).mount('#step02');
+
+        createApp({
+            setup() {
+                const selected = ref('apple');
+                const fruits = ref([]);
+                function check() {
+                    console.log(selected.value);
+                }
+
+                return {
+                    selected,
+                    fruits,
+                    check
+                }
+            }
+        }).mount('#step03');
+
+        createApp({
+            setup() {
+                const fruits = ref([]);
+                const toggle = ref();
+                const dynamicTrueValue = ref('선택됨');
+                const dynamicFalseValue = ref('선택안됨');
+
+                return {
+                    fruits,
+                    toggle,
+                    dynamicTrueValue,
+                    dynamicFalseValue
+                }
+            }
+        }).mount('#step04');
+    </script>
+</body>
+</html>
