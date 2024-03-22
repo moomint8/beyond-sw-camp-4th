@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- 
+        Attribute Bindings
+        html 요소의 속성(attribute)을 컴포넌트 데이터 또는 props와 연결하는 기능으로
+        이를 통해 동적으로 속성 값을 변경하고 ui를 업데이트 할 수 있다.
+
+        Bindings 이점
+        1. 동적인 ui 업데이트
+        2. 코드 간소화
+        3. 컴포넌트 재사용
+    -->
+    <h3>속성 바인딩</h3>
+    <hr>
+    <div id="step01">
+        <h5>bind 구문</h5>
+        <div v-bid:id="dynamicId">{{value}}</div>
+        <div :id="skipId">{{skipValue}}</div>
+    </div>
+    <br>
+    <div id="step02">
+        <h5>비활성화</h5>
+        <input :disable="isTrue" :value="isTrue">
+        <br>
+        <button @click="activation">{{isTrue}}</button>
+    </div>
+
+    <script>
+        const {createApp, ref} = Vue;
+        createApp({
+            setup(){
+                const dynamicId = ref('vue');
+                const value = ref('test');
+                const skipId = ref('skipValue');
+                const skipValue = ref('skipValue');
+
+                return {
+                    dynamicId,
+                    value,
+                    skipId,
+                    skipValue
+                }
+            }
+        }).mount('#step01')
+
+        /*
+            반응성 변수를 위한 ref
+
+            vue.js 3에서 반응형 변수를 생성하는 중요한 함수이다.
+            반응형 변수란 데이터 값이 변경될 때 자동으로 템플릿을 업데이트하는 특수한 변수이다.
+
+            기능
+            1. 값을 감싸고, 값이 변경될 때 템플릿을 자동으로 업데이트한다.
+            2. 기본 값을 설정할 수 있다.
+            3. 객체 또는 배열을 감쌀 수 있다.
+        */
+        createApp({
+            setup() {
+                const isTrue = ref(false);
+
+                /*
+                    이후에 reactive 파트에서 다시 다루겠지만 Vue가 제공하는 reactive 함수를 써서도 객체 데이터를
+                    관리할 수 있다.
+
+                    ref와 reactive의 차이점
+                    1. ref는 모든 자료형을 관리할 수 있고 reactive는 객체 형태들만 관리할 수 있다.
+                    2. ref는 setup() 안에서 접근할 때 .value를 붙여야 하고 reactive는 바로 접근 가능하다.
+                */
+                const refObj = ref({test: 'ttt'});
+                const reactiveObj = reactive({test: 'abc'});
+
+                const activation = () => {
+                    console.log(isTrue);
+                    console.log(refObj.value.test);
+                    console.log(reactiveObj.value.test);
+                    isTrue.value = !isTrue.value;
+                }
+
+                return {
+                    isTrue,
+                    activation
+                }
+            }
+        
+
+            
+        }).mount('#step02')
+    </script>
+</body>
+</html>
