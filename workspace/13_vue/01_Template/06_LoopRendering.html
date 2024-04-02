@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        v-for
+        배열을 기준으로 항목 목록을 렌더링하는 지시문(directive)이다.
+    -->
+    <div id="step01">
+        <h5>과일가게</h5>
+        <li v-for="item in items">{{item}}</li>
+    </div>
+
+    <div id="step02">
+        <li v-for="info in profile">
+            {{info}}
+        </li>
+        <br>
+        <li v-for="(value, key, index) in profile">
+            {{index}}:{{key}}:{{value}}
+        </li>
+    </div>
+
+    <!-- 
+        data 없이 범위만 있는 loop 렌더링
+        (필요한 데이터는 없지만 지시자가 적용되려면 뷰모델이 필요하다.)
+    -->
+    <div id="step03">
+        <li v-for="n in 10">{{n}}</li>
+    </div>
+
+    <div id="step04">
+
+        <!-- v-for와 v-if를 같이 적용하면 동작하지 않는다. -->
+        <!-- <li v-for="item in items" v-if="item.state">{{item}}</li> -->
+        <template v-for="item in items">
+            <li v-if="item.state">
+                {{item.name}}
+            </li>
+        </template>
+    </div>
+
+    <!-- 
+        :key
+        Vue가 렌더링된 요소 목록을 업데이트 할 때 v-for는 기본적으로 DOM 요소들 전체를 확인하게 된다.
+        이 때 Vue가 각 노드의 id를 추적할 수 있도록 힌트를 주고 기존 요소를 재사용하여 순서를 변경함에 있어
+        용이하게 하기 위해서 key 라는 정보를 제공하면 성능상 이점을 가져갈 수 있다.(사실상 반복에서 필수로 적게 됨)
+    -->
+    <div id="step05">
+        <div v-for="item in items" :key="item.id">
+            {{item.id}} - {{item.name}}
+        </div>
+    </div>
+
+    <script>
+        const {createApp, ref, reactive} = Vue;
+
+        createApp({
+            setup(){
+                const items = ref(['Apple', 'Pineapple', 'Melon', 'WaterMelon']);
+
+                return {
+                    items
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup(){
+                const profile = reactive({
+                    name: '홍길동',
+                    address: '인천시 부평구',
+                    introduction: 'vue 전문가 마계의 인물'
+                })
+
+                return {
+                    profile
+                }
+            }
+        }).mount('#step02');
+
+        createApp({
+            setup(){
+                
+
+                return {
+                }
+            }
+        }).mount('#step03');
+
+        createApp({
+            setup(){
+                const items = ref([
+                    {name: 'apple', state: true},
+                    {name: 'pineapple', state: false},
+                    {name: 'melon', state: true},
+                    {name: 'watermelon', state: false}
+                ])
+
+                return {
+                    items
+                }
+            }
+        }).mount('#step04');
+
+        createApp({
+            setup(){
+                const items = ref([
+                    {id: 0, name: 'apple'},
+                    {id: 1, name: 'pineapple'},
+                    {id: 2, name: 'melon'},
+                    {id: 3, name: 'watermelon'}
+                ])
+
+                return {
+                    items
+                }
+            }
+        }).mount('#step05');
+    </script>
+</body>
+</html>

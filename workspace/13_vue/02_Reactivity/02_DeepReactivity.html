@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+    <body>
+        <div id="step01">
+            <h1>상품 담기</h1>
+
+            <!-- 
+                select 태그의 v-model
+                v-model은 양방향 바인딩을 위한 것으로 일반적으로 쓰는 input태그는 사용자의 입력 값이 value로 들어가 활용되는
+                형태인 반면 select 태그는 change 이벤트(사용자가 다른 option 태그를 선택함)에 따라 선택된(selected 된) option 태그의
+                value를 바인딩한다.
+
+                (어차피 form 태그와 submit을 활용해 태그의 name과 value를 서버에 전달하는 것이 아닌 model 데이터를 fetch나
+                axios 같은 비동기 통신으로 전달할 것이므로 option 태그의 value 어트리뷰트는 v-model의 데이터 수정용으로 사용해도 된다.)
+             -->
+            <select v-model="selectedFruit">
+                <option v-for="fruit in fruits" :value="fruit">{{fruit.name}}</option>
+            </select>
+            <button @click="addProduct(selectedFruit)">상품 추가</button>
+            <hr>
+            <li v-for="list in basket">{{ list }}</li>
+            <p>{{ totalPrice }}</p>
+        </div>
+
+        <script>
+            const {createApp, ref} = Vue;
+
+            createApp({
+                setup() {
+                    const fruits = ref([{name: 'Apple', price: 100}, 
+                                        {name: 'Banana', price: 200}, 
+                                        {name: 'Pineapple', price: 300}]);
+
+                    const selectedFruit = ref({name: 'Apple', price: 100});
+                    const basket = ref([]);
+                    const totalPrice = ref(0);
+
+                    const addProduct = (product) => {
+                        basket.value.push(product.name);
+                        totalPrice.value += product.price;
+                    }
+                    
+                    return {
+                        fruits,
+                        basket,
+                        totalPrice,
+                        selectedFruit,
+                        addProduct
+                    }
+                }
+            }).mount('#step01');
+        </script>
+    </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--
+        watch:
+        데이터의 변경을 감지하고 그에 따라 추가 동작을 수행할 수 있다.
+        watch 함수는 vue인스턴스가 생성되고 setup 함수 내부에서 사용된다.
+
+        [표현식]
+        watch(propertyName, callback(newValue, oldValue)=> {
+            1. propertyName: 변경을 감지할 속성
+            2. newValue: 현재 입력된 새로운 값
+            3. oldValue: 입력 이전의 값
+            4. callback: 변경 감지 시 수행할 동작
+        })
+
+        결론은, 감시자(watch)는 반응형 변수에 추가 기능을 달아 주거나 반응형 변수의 변화 이전 값 활용 시 사용한다.
+    -->
+
+    <div id="step01">
+        <p>
+            현재 값: {{ currentValue }}
+        </p>
+        <p>
+            이전 값: {{ previousValue }}
+        </p>
+        <input type="text" v-model="currentValue">
+    </div>
+
+    <div id="step02">
+        <p>
+            {{ sum }}
+        </p>
+        <button @click="x++">x++</button>
+        <button @click="y++">y++</button>
+        <button @click="z++">z++</button>
+    </div>
+
+    <script>
+        const {createApp, ref, watch} = Vue;
+
+        createApp({
+            setup() {
+                const currentValue = ref('');
+                const previousValue = ref('');
+
+                watch(currentValue, async(newVal, oldVal) => {
+                    if(newVal !== previousValue.value) {        // currentValue의 새로 바뀐 값이 previousValue의 값과 일치하지 않으면
+                        console.log(newVal);
+                        console.log(oldVal);
+                        console.log('watch === 데이터 변경 후 로직 실행');
+
+                        previousValue.value = oldVal;
+                    }
+                });
+
+                return {
+                    currentValue,
+                    previousValue
+                }
+            }
+        }).mount('#step01');
+
+        createApp({
+            setup() {
+                const x = ref(0);
+                const y = ref(0);
+                const z = ref(0);
+                const sum = ref(0);
+
+                /* watch의 첫번째 인수로 함수가 던져지면 함수 안에서 사용한 반응형 변수들만 감시한다. */
+                watch(() => {
+                    console.log('언제 실행');
+                    return x.value + y.value;
+                },
+                (result) => {                   // 첫번째 인수의 함수 반환값이 자동으로 두번째 인수의 함수 매개변수로 넘어옴
+                    sum.value = result;
+                })
+
+                return {
+                    x, y, z, sum
+                }
+            }
+        }).mount('#step02');
+
+    </script>
+</body>
+</html>

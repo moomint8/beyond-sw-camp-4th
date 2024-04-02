@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+        <span>message: {{msg}}</span>
+        <!-- msg 밑에 hello world라고 써놨으니 그게 들어감 -->
+        <hr>
+        <div v-text="msg"></div>
+        <!-- 이 태그의 내용물로 inner text 효과를 내서 msg를 활용하겠다는 뜻 -->
+        <!-- <div>hello world</div>로 나옴! -->
+        <div v-text="'message: ' + msg">abc</div>
+        <!-- abc 위를 덮어씌우게 됨 -->
+        <div id="inJs">zzzzzzzz</div>
+
+
+        <!--
+        {{}}은 html 스크립트를 일반 텍스트로 해석하며 실제 html을 출력하기 위해서는
+        v-html 옵션을 이용하여 html 구문임을 명시해야 한다.
+        -->
+        <hr>
+        <h5>Raw Html</h5>
+        <p>Using text interpolation: {{ rawHtml }}</p>
+        <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+        <!-- v- 로 들어가는 건 directive -->
+    </div>
+
+    <script>
+        document.getElementById("inJs").innerText = 'message: ' + 'abc';
+
+        const {createApp} = Vue
+
+        /* createApp으로 만든 ViewModel을 통해 template에서 사용할 재료를 반환 */
+        createApp({
+            setup() {
+                return {
+                    msg: "hello world",
+                    // 위에서 msg를 고치는 게 아니라 여기서 고치면 페이지가 계속 달라짐
+
+                    rawHtml: "<span style='color:red'>hello world</span>"
+                }
+            }
+        }).mount('#step01')
+    </script>
+</body>
+</html>

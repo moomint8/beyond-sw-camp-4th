@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ num }}</h1>
+        <h1>Loding value: {{ loadingValue }}</h1>
+        <button @click="increment">Increment</button>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue;
+        createApp({
+            setup() {
+                const num = ref(0);
+                const loadingValue = ref(0);
+
+                /*
+                    newxtTick:
+                    Vue.js에서 DOM 업데이트가 완료된 후 특정 함수를 실행하는 유틸리티 함수이다.
+                    즉 데이터 변경 후 DOM이 실제로 업데이트되기 전에 발생하는 비동기 틱에 콜백함수를 등록하는 역할을 한다.
+
+                    nextTick의 사용 예시
+                    1. 데이터 변경 후 DOM 조작: v-model로 바인딩된 값을 변경한 후 값을 DOM 요소에 업데이트하는 경우 사용함
+                    2. 컴포넌트 렌더링 후 작업 수행: 컴포넌트 렌더링 후 초기화를 해야하는 일이 발생하는 경우 nextTick을 사용할 수 있다.
+                    3. 비동기 작업 후 처리: api 요청 완료 후 결과를 처리해야 하는 경우 사용할 수 있다.
+                */
+                async function increment() {
+                    num.value++;
+
+                    // 1초 지연시키기
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    const data = await Vue.nextTick(() => true);    // 다음 DOM 업데이트 사이클까지 대기(비동기 통신 이후 실행될 콜백함수, 업데이트 전 실행될 콜백함수)
+                    if (data) {
+                        loadingValue.value++;
+                    }
+                }
+
+                return {
+                    num,
+                    loadingValue,
+                    increment
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
